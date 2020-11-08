@@ -1,0 +1,8 @@
+dev:
+  secret: "foo"
+
+devdocker:
+  secret: "foo"
+
+prod:
+  secret: "foo"

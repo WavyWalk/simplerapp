@@ -1,0 +1,7 @@
+/.gradle/
+/build/
+/docker/pg/data/
+/simpler-jackson-adapter/build
+/.idea/
+/all.log
+/simpler-jackson-adapter/.gradle/

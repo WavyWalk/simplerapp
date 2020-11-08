@@ -1,0 +1,17 @@
+dev:
+  userName: root
+  password: root
+  jdbcUrl: jdbc:postgresql://localhost/simplerapp
+  driverClassName: org.postgresql.Driver
+
+devdocker:
+  userName: root
+  password: root
+  jdbcUrl: jdbc:postgresql://db/simplerapp
+  driverClassName: org.postgresql.Driver
+
+prod:
+  userName: root
+  password: root
+  jdbcUrl: jdbc:postgresql://db/simplerapp
+  driverClassName: org.postgresql.Driver

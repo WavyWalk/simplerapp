@@ -1,0 +1,65 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.novoda:bintray-release:0.9'
+    }
+}
+
+plugins {
+    id 'java'
+    id 'org.jetbrains.kotlin.jvm' // version '1.3.11'
+}
+
+apply plugin: 'com.novoda.bintray-release' 
+
+group 'at.wavywalk.simpler.orm.jascksonadapter'
+version '0.1.0'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    maven {
+        url  "https://dl.bintray.com/wavywalk/maven"
+    }
+}
+
+task sourcesJar(type: Jar, dependsOn: project.classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+//
+//task javadocJar(type: Jar, dependsOn: project.javadoc) {
+//    from javadoc.destinationDir
+//}
+//
+artifacts {
+    archives sourcesJar
+}
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.9.2'
+    compile project(':simpler-orm')
+
+}
+
+publish {
+    userOrg = 'wavywalk'
+    groupId = 'at.wavywalk.simpler'
+    repoName = 'maven'
+    artifactId = 'simpler-orm-jacksonadapter'
+    publishVersion = '0.1.0'
+    desc = 'embedded jetty for simpler framework'
+    repository = "https://github.com/WavyWalk/simpler-orm-jacksonadapter"
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}

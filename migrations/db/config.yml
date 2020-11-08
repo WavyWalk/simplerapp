@@ -1,0 +1,18 @@
+dev:
+  adapter: postgresql
+  encoding: unicode
+  database: simplerapp
+  pool: 5
+  username: root
+  password: root
+  host: db
+
+prod:
+  adapter: postgresql
+  encoding: unicode
+  database: simplerapp
+  pool: 5
+  username: root
+  password: root
+  host: db
+

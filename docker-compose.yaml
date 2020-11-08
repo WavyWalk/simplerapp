@@ -1,0 +1,17 @@
+version: '3'
+services:
+
+  db:
+    image: postgres:12.2
+    environment:
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_USER=root
+      - POSTGRES_DB=simplerapp
+    volumes:
+      - ./docker/pg/data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    network_mode: host
+
+  proxy:
+    image: nginx

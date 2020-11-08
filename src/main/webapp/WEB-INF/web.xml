@@ -1,0 +1,11 @@
+<web-app>
+    <servlet>
+        <servlet-name>frontServlet</servlet-name>
+        <servlet-class>at.wavywalk.simpler.servlets.FrontServlet</servlet-class>
+    </servlet>
+    <listener>
+        <listener-class>
+            org.apache.commons.fileupload.servlet.FileCleanerCleanup
+        </listener-class>
+    </listener>
+</web-app>

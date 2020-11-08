@@ -1,0 +1,8 @@
+dev:
+  publicDir: ../../../../src/public
+
+devdocker:
+  publicDir: ../public
+
+prod:
+  publicDir: ../public

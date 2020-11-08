@@ -1,0 +1,3 @@
+rootProject.name = 'simpler-orm-jacksonadapter'
+
+include(':simpler-orm')

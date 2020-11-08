@@ -1,0 +1,9 @@
+rootProject.name = 'simplerapp'
+include 'simpler'
+include 'simpler-configurator'
+include "simpler-orm"
+include "simpler-freemarker-adapter"
+include "simpler-jackson-adapter"
+include "simpler-embedded-jetty"
+include "simpler-orm-jacksonadapter"
+
