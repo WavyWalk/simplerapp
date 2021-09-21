@@ -2,7 +2,7 @@ version: '3'
 services:
 
   backend:
-    image: openjdk:10
+    image: openjdk:11
     build:
       context: ./
       dockerfile: ./docker/backend/Dockerfile

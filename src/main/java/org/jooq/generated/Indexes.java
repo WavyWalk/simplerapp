@@ -7,11 +7,12 @@ package org.jooq.generated;
 import org.jooq.Index;
 import org.jooq.OrderField;
 import org.jooq.generated.tables.Accounts;
+import org.jooq.impl.DSL;
 import org.jooq.impl.Internal;
 
 
 /**
- * A class modelling indexes of tables of the <code></code> schema.
+ * A class modelling indexes of tables in the default schema.
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Indexes {
@@ -20,13 +21,5 @@ public class Indexes {
     // INDEX definitions
     // -------------------------------------------------------------------------
 
-    public static final Index INDEX_ACCOUNTS_ON_USER_ID = Indexes0.INDEX_ACCOUNTS_ON_USER_ID;
-
-    // -------------------------------------------------------------------------
-    // [#1459] distribute members to avoid static initialisers > 64kb
-    // -------------------------------------------------------------------------
-
-    private static class Indexes0 {
-        public static Index INDEX_ACCOUNTS_ON_USER_ID = Internal.createIndex("index_accounts_on_user_id", Accounts.ACCOUNTS, new OrderField[] { Accounts.ACCOUNTS.USER_ID }, false);
-    }
+    public static final Index INDEX_ACCOUNTS_ON_USER_ID = Internal.createIndex(DSL.name("index_accounts_on_user_id"), Accounts.ACCOUNTS, new OrderField[] { Accounts.ACCOUNTS.USER_ID }, false);
 }

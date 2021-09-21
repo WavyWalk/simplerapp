@@ -21,9 +21,9 @@ import org.jooq.TableField;
 import org.jooq.TableOptions;
 import org.jooq.generated.DefaultSchema;
 import org.jooq.generated.Indexes;
-import org.jooq.generated.Keys;
 import org.jooq.generated.tables.records.AccountsRecord;
 import org.jooq.impl.DSL;
+import org.jooq.impl.SQLDataType;
 import org.jooq.impl.TableImpl;
 
 
@@ -33,7 +33,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Accounts extends TableImpl<AccountsRecord> {
 
-    private static final long serialVersionUID = -1696606085;
+    private static final long serialVersionUID = 1L;
 
     /**
      * The reference instance of <code>accounts</code>
@@ -51,38 +51,39 @@ public class Accounts extends TableImpl<AccountsRecord> {
     /**
      * The column <code>accounts.id</code>.
      */
-    public final TableField<AccountsRecord, Long> ID = createField(DSL.name("id"), org.jooq.impl.SQLDataType.BIGINT.nullable(false).defaultValue(org.jooq.impl.DSL.field("nextval('accounts_id_seq'::regclass)", org.jooq.impl.SQLDataType.BIGINT)), this, "");
+    public final TableField<AccountsRecord, Long> ID = createField(DSL.name("id"), SQLDataType.BIGINT.nullable(false).identity(true), this, "");
 
     /**
      * The column <code>accounts.user_id</code>.
      */
-    public final TableField<AccountsRecord, Long> USER_ID = createField(DSL.name("user_id"), org.jooq.impl.SQLDataType.BIGINT, this, "");
+    public final TableField<AccountsRecord, Long> USER_ID = createField(DSL.name("user_id"), SQLDataType.BIGINT, this, "");
 
     /**
      * The column <code>accounts.password</code>.
      */
-    public final TableField<AccountsRecord, String> PASSWORD = createField(DSL.name("password"), org.jooq.impl.SQLDataType.CLOB, this, "");
+    public final TableField<AccountsRecord, String> PASSWORD = createField(DSL.name("password"), SQLDataType.CLOB, this, "");
 
     /**
      * The column <code>accounts.email</code>.
      */
-    public final TableField<AccountsRecord, String> EMAIL = createField(DSL.name("email"), org.jooq.impl.SQLDataType.VARCHAR, this, "");
+    public final TableField<AccountsRecord, String> EMAIL = createField(DSL.name("email"), SQLDataType.VARCHAR, this, "");
 
     /**
      * The column <code>accounts.created_at</code>.
      */
-    public final TableField<AccountsRecord, LocalDateTime> CREATED_AT = createField(DSL.name("created_at"), org.jooq.impl.SQLDataType.LOCALDATETIME, this, "");
+    public final TableField<AccountsRecord, LocalDateTime> CREATED_AT = createField(DSL.name("created_at"), SQLDataType.LOCALDATETIME(6), this, "");
 
     /**
      * The column <code>accounts.updated_at</code>.
      */
-    public final TableField<AccountsRecord, LocalDateTime> UPDATED_AT = createField(DSL.name("updated_at"), org.jooq.impl.SQLDataType.LOCALDATETIME, this, "");
+    public final TableField<AccountsRecord, LocalDateTime> UPDATED_AT = createField(DSL.name("updated_at"), SQLDataType.LOCALDATETIME(6), this, "");
 
-    /**
-     * Create a <code>accounts</code> table reference
-     */
-    public Accounts() {
-        this(DSL.name("accounts"), null);
+    private Accounts(Name alias, Table<AccountsRecord> aliased) {
+        this(alias, aliased, null);
+    }
+
+    private Accounts(Name alias, Table<AccountsRecord> aliased, Field<?>[] parameters) {
+        super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.table());
     }
 
     /**
@@ -99,12 +100,11 @@ public class Accounts extends TableImpl<AccountsRecord> {
         this(alias, ACCOUNTS);
     }
 
-    private Accounts(Name alias, Table<AccountsRecord> aliased) {
-        this(alias, aliased, null);
-    }
-
-    private Accounts(Name alias, Table<AccountsRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.table());
+    /**
+     * Create a <code>accounts</code> table reference
+     */
+    public Accounts() {
+        this(DSL.name("accounts"), null);
     }
 
     public <O extends Record> Accounts(Table<O> child, ForeignKey<O, AccountsRecord> key) {
@@ -113,17 +113,17 @@ public class Accounts extends TableImpl<AccountsRecord> {
 
     @Override
     public Schema getSchema() {
-        return DefaultSchema.DEFAULT_SCHEMA;
+        return aliased() ? null : DefaultSchema.DEFAULT_SCHEMA;
     }
 
     @Override
     public List<Index> getIndexes() {
-        return Arrays.<Index>asList(Indexes.INDEX_ACCOUNTS_ON_USER_ID);
+        return Arrays.asList(Indexes.INDEX_ACCOUNTS_ON_USER_ID);
     }
 
     @Override
     public Identity<AccountsRecord, Long> getIdentity() {
-        return Keys.IDENTITY_ACCOUNTS;
+        return (Identity<AccountsRecord, Long>) super.getIdentity();
     }
 
     @Override

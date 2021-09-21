@@ -17,9 +17,9 @@ import org.jooq.Table;
 import org.jooq.TableField;
 import org.jooq.TableOptions;
 import org.jooq.generated.DefaultSchema;
-import org.jooq.generated.Keys;
 import org.jooq.generated.tables.records.UsersRecord;
 import org.jooq.impl.DSL;
+import org.jooq.impl.SQLDataType;
 import org.jooq.impl.TableImpl;
 
 
@@ -29,7 +29,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Users extends TableImpl<UsersRecord> {
 
-    private static final long serialVersionUID = 1771144023;
+    private static final long serialVersionUID = 1L;
 
     /**
      * The reference instance of <code>users</code>
@@ -47,28 +47,29 @@ public class Users extends TableImpl<UsersRecord> {
     /**
      * The column <code>users.id</code>.
      */
-    public final TableField<UsersRecord, Long> ID = createField(DSL.name("id"), org.jooq.impl.SQLDataType.BIGINT.nullable(false).defaultValue(org.jooq.impl.DSL.field("nextval('users_id_seq'::regclass)", org.jooq.impl.SQLDataType.BIGINT)), this, "");
+    public final TableField<UsersRecord, Long> ID = createField(DSL.name("id"), SQLDataType.BIGINT.nullable(false).identity(true), this, "");
 
     /**
      * The column <code>users.created_at</code>.
      */
-    public final TableField<UsersRecord, LocalDateTime> CREATED_AT = createField(DSL.name("created_at"), org.jooq.impl.SQLDataType.LOCALDATETIME, this, "");
+    public final TableField<UsersRecord, LocalDateTime> CREATED_AT = createField(DSL.name("created_at"), SQLDataType.LOCALDATETIME(6), this, "");
 
     /**
      * The column <code>users.updated_at</code>.
      */
-    public final TableField<UsersRecord, LocalDateTime> UPDATED_AT = createField(DSL.name("updated_at"), org.jooq.impl.SQLDataType.LOCALDATETIME, this, "");
+    public final TableField<UsersRecord, LocalDateTime> UPDATED_AT = createField(DSL.name("updated_at"), SQLDataType.LOCALDATETIME(6), this, "");
 
     /**
      * The column <code>users.name</code>.
      */
-    public final TableField<UsersRecord, String> NAME = createField(DSL.name("name"), org.jooq.impl.SQLDataType.VARCHAR, this, "");
+    public final TableField<UsersRecord, String> NAME = createField(DSL.name("name"), SQLDataType.VARCHAR, this, "");
 
-    /**
-     * Create a <code>users</code> table reference
-     */
-    public Users() {
-        this(DSL.name("users"), null);
+    private Users(Name alias, Table<UsersRecord> aliased) {
+        this(alias, aliased, null);
+    }
+
+    private Users(Name alias, Table<UsersRecord> aliased, Field<?>[] parameters) {
+        super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.table());
     }
 
     /**
@@ -85,12 +86,11 @@ public class Users extends TableImpl<UsersRecord> {
         this(alias, USERS);
     }
 
-    private Users(Name alias, Table<UsersRecord> aliased) {
-        this(alias, aliased, null);
-    }
-
-    private Users(Name alias, Table<UsersRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.table());
+    /**
+     * Create a <code>users</code> table reference
+     */
+    public Users() {
+        this(DSL.name("users"), null);
     }
 
     public <O extends Record> Users(Table<O> child, ForeignKey<O, UsersRecord> key) {
@@ -99,12 +99,12 @@ public class Users extends TableImpl<UsersRecord> {
 
     @Override
     public Schema getSchema() {
-        return DefaultSchema.DEFAULT_SCHEMA;
+        return aliased() ? null : DefaultSchema.DEFAULT_SCHEMA;
     }
 
     @Override
     public Identity<UsersRecord, Long> getIdentity() {
-        return Keys.IDENTITY_USERS;
+        return (Identity<UsersRecord, Long>) super.getIdentity();
     }
 
     @Override

@@ -16,6 +16,7 @@ import org.jooq.TableOptions;
 import org.jooq.generated.DefaultSchema;
 import org.jooq.generated.tables.records.SchemaMigrationsRecord;
 import org.jooq.impl.DSL;
+import org.jooq.impl.SQLDataType;
 import org.jooq.impl.TableImpl;
 
 
@@ -25,7 +26,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class SchemaMigrations extends TableImpl<SchemaMigrationsRecord> {
 
-    private static final long serialVersionUID = -643607150;
+    private static final long serialVersionUID = 1L;
 
     /**
      * The reference instance of <code>schema_migrations</code>
@@ -43,13 +44,14 @@ public class SchemaMigrations extends TableImpl<SchemaMigrationsRecord> {
     /**
      * The column <code>schema_migrations.version</code>.
      */
-    public final TableField<SchemaMigrationsRecord, String> VERSION = createField(DSL.name("version"), org.jooq.impl.SQLDataType.VARCHAR.nullable(false), this, "");
+    public final TableField<SchemaMigrationsRecord, String> VERSION = createField(DSL.name("version"), SQLDataType.VARCHAR.nullable(false), this, "");
 
-    /**
-     * Create a <code>schema_migrations</code> table reference
-     */
-    public SchemaMigrations() {
-        this(DSL.name("schema_migrations"), null);
+    private SchemaMigrations(Name alias, Table<SchemaMigrationsRecord> aliased) {
+        this(alias, aliased, null);
+    }
+
+    private SchemaMigrations(Name alias, Table<SchemaMigrationsRecord> aliased, Field<?>[] parameters) {
+        super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.table());
     }
 
     /**
@@ -66,12 +68,11 @@ public class SchemaMigrations extends TableImpl<SchemaMigrationsRecord> {
         this(alias, SCHEMA_MIGRATIONS);
     }
 
-    private SchemaMigrations(Name alias, Table<SchemaMigrationsRecord> aliased) {
-        this(alias, aliased, null);
-    }
-
-    private SchemaMigrations(Name alias, Table<SchemaMigrationsRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.table());
+    /**
+     * Create a <code>schema_migrations</code> table reference
+     */
+    public SchemaMigrations() {
+        this(DSL.name("schema_migrations"), null);
     }
 
     public <O extends Record> SchemaMigrations(Table<O> child, ForeignKey<O, SchemaMigrationsRecord> key) {
@@ -80,7 +81,7 @@ public class SchemaMigrations extends TableImpl<SchemaMigrationsRecord> {
 
     @Override
     public Schema getSchema() {
-        return DefaultSchema.DEFAULT_SCHEMA;
+        return aliased() ? null : DefaultSchema.DEFAULT_SCHEMA;
     }
 
     @Override

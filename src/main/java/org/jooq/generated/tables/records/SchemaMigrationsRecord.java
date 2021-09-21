@@ -17,7 +17,7 @@ import org.jooq.impl.TableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class SchemaMigrationsRecord extends TableRecordImpl<SchemaMigrationsRecord> implements Record1<String> {
 
-    private static final long serialVersionUID = 1301304992;
+    private static final long serialVersionUID = 1L;
 
     /**
      * Setter for <code>schema_migrations.version</code>.
@@ -91,6 +91,6 @@ public class SchemaMigrationsRecord extends TableRecordImpl<SchemaMigrationsReco
     public SchemaMigrationsRecord(String version) {
         super(SchemaMigrations.SCHEMA_MIGRATIONS);
 
-        set(0, version);
+        setVersion(version);
     }
 }

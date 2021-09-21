@@ -19,7 +19,7 @@ import org.jooq.impl.TableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class AccountsRecord extends TableRecordImpl<AccountsRecord> implements Record6<Long, Long, String, String, LocalDateTime, LocalDateTime> {
 
-    private static final long serialVersionUID = -1435026602;
+    private static final long serialVersionUID = 1L;
 
     /**
      * Setter for <code>accounts.id</code>.
@@ -273,11 +273,11 @@ public class AccountsRecord extends TableRecordImpl<AccountsRecord> implements R
     public AccountsRecord(Long id, Long userId, String password, String email, LocalDateTime createdAt, LocalDateTime updatedAt) {
         super(Accounts.ACCOUNTS);
 
-        set(0, id);
-        set(1, userId);
-        set(2, password);
-        set(3, email);
-        set(4, createdAt);
-        set(5, updatedAt);
+        setId(id);
+        setUserId(userId);
+        setPassword(password);
+        setEmail(email);
+        setCreatedAt(createdAt);
+        setUpdatedAt(updatedAt);
     }
 }

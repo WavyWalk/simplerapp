@@ -19,7 +19,7 @@ import org.jooq.impl.TableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class UsersRecord extends TableRecordImpl<UsersRecord> implements Record4<Long, LocalDateTime, LocalDateTime, String> {
 
-    private static final long serialVersionUID = -1057412209;
+    private static final long serialVersionUID = 1L;
 
     /**
      * Setter for <code>users.id</code>.
@@ -201,9 +201,9 @@ public class UsersRecord extends TableRecordImpl<UsersRecord> implements Record4
     public UsersRecord(Long id, LocalDateTime createdAt, LocalDateTime updatedAt, String name) {
         super(Users.USERS);
 
-        set(0, id);
-        set(1, createdAt);
-        set(2, updatedAt);
-        set(3, name);
+        setId(id);
+        setCreatedAt(createdAt);
+        setUpdatedAt(updatedAt);
+        setName(name);
     }
 }

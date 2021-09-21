@@ -18,6 +18,7 @@ import org.jooq.TableOptions;
 import org.jooq.generated.DefaultSchema;
 import org.jooq.generated.tables.records.ArInternalMetadataRecord;
 import org.jooq.impl.DSL;
+import org.jooq.impl.SQLDataType;
 import org.jooq.impl.TableImpl;
 
 
@@ -27,7 +28,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class ArInternalMetadata extends TableImpl<ArInternalMetadataRecord> {
 
-    private static final long serialVersionUID = -212368541;
+    private static final long serialVersionUID = 1L;
 
     /**
      * The reference instance of <code>ar_internal_metadata</code>
@@ -45,28 +46,29 @@ public class ArInternalMetadata extends TableImpl<ArInternalMetadataRecord> {
     /**
      * The column <code>ar_internal_metadata.key</code>.
      */
-    public final TableField<ArInternalMetadataRecord, String> KEY = createField(DSL.name("key"), org.jooq.impl.SQLDataType.VARCHAR.nullable(false), this, "");
+    public final TableField<ArInternalMetadataRecord, String> KEY = createField(DSL.name("key"), SQLDataType.VARCHAR.nullable(false), this, "");
 
     /**
      * The column <code>ar_internal_metadata.value</code>.
      */
-    public final TableField<ArInternalMetadataRecord, String> VALUE = createField(DSL.name("value"), org.jooq.impl.SQLDataType.VARCHAR, this, "");
+    public final TableField<ArInternalMetadataRecord, String> VALUE = createField(DSL.name("value"), SQLDataType.VARCHAR, this, "");
 
     /**
      * The column <code>ar_internal_metadata.created_at</code>.
      */
-    public final TableField<ArInternalMetadataRecord, LocalDateTime> CREATED_AT = createField(DSL.name("created_at"), org.jooq.impl.SQLDataType.LOCALDATETIME.nullable(false), this, "");
+    public final TableField<ArInternalMetadataRecord, LocalDateTime> CREATED_AT = createField(DSL.name("created_at"), SQLDataType.LOCALDATETIME(6).nullable(false), this, "");
 
     /**
      * The column <code>ar_internal_metadata.updated_at</code>.
      */
-    public final TableField<ArInternalMetadataRecord, LocalDateTime> UPDATED_AT = createField(DSL.name("updated_at"), org.jooq.impl.SQLDataType.LOCALDATETIME.nullable(false), this, "");
+    public final TableField<ArInternalMetadataRecord, LocalDateTime> UPDATED_AT = createField(DSL.name("updated_at"), SQLDataType.LOCALDATETIME(6).nullable(false), this, "");
 
-    /**
-     * Create a <code>ar_internal_metadata</code> table reference
-     */
-    public ArInternalMetadata() {
-        this(DSL.name("ar_internal_metadata"), null);
+    private ArInternalMetadata(Name alias, Table<ArInternalMetadataRecord> aliased) {
+        this(alias, aliased, null);
+    }
+
+    private ArInternalMetadata(Name alias, Table<ArInternalMetadataRecord> aliased, Field<?>[] parameters) {
+        super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.table());
     }
 
     /**
@@ -83,12 +85,11 @@ public class ArInternalMetadata extends TableImpl<ArInternalMetadataRecord> {
         this(alias, AR_INTERNAL_METADATA);
     }
 
-    private ArInternalMetadata(Name alias, Table<ArInternalMetadataRecord> aliased) {
-        this(alias, aliased, null);
-    }
-
-    private ArInternalMetadata(Name alias, Table<ArInternalMetadataRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.table());
+    /**
+     * Create a <code>ar_internal_metadata</code> table reference
+     */
+    public ArInternalMetadata() {
+        this(DSL.name("ar_internal_metadata"), null);
     }
 
     public <O extends Record> ArInternalMetadata(Table<O> child, ForeignKey<O, ArInternalMetadataRecord> key) {
@@ -97,7 +98,7 @@ public class ArInternalMetadata extends TableImpl<ArInternalMetadataRecord> {
 
     @Override
     public Schema getSchema() {
-        return DefaultSchema.DEFAULT_SCHEMA;
+        return aliased() ? null : DefaultSchema.DEFAULT_SCHEMA;
     }
 
     @Override

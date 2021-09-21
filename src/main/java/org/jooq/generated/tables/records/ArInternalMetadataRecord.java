@@ -19,7 +19,7 @@ import org.jooq.impl.TableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class ArInternalMetadataRecord extends TableRecordImpl<ArInternalMetadataRecord> implements Record4<String, String, LocalDateTime, LocalDateTime> {
 
-    private static final long serialVersionUID = 962491433;
+    private static final long serialVersionUID = 1L;
 
     /**
      * Setter for <code>ar_internal_metadata.key</code>.
@@ -201,9 +201,9 @@ public class ArInternalMetadataRecord extends TableRecordImpl<ArInternalMetadata
     public ArInternalMetadataRecord(String key, String value, LocalDateTime createdAt, LocalDateTime updatedAt) {
         super(ArInternalMetadata.AR_INTERNAL_METADATA);
 
-        set(0, key);
-        set(1, value);
-        set(2, createdAt);
-        set(3, updatedAt);
+        setKey(key);
+        setValue(value);
+        setCreatedAt(createdAt);
+        setUpdatedAt(updatedAt);
     }
 }

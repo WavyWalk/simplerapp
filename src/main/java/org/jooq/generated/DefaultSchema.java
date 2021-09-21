@@ -22,7 +22,7 @@ import org.jooq.impl.SchemaImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class DefaultSchema extends SchemaImpl {
 
-    private static final long serialVersionUID = -621668056;
+    private static final long serialVersionUID = 1L;
 
     /**
      * The reference instance of <code>DEFAULT_SCHEMA</code>
@@ -64,10 +64,11 @@ public class DefaultSchema extends SchemaImpl {
 
     @Override
     public final List<Table<?>> getTables() {
-        return Arrays.<Table<?>>asList(
+        return Arrays.asList(
             Accounts.ACCOUNTS,
             ArInternalMetadata.AR_INTERNAL_METADATA,
             SchemaMigrations.SCHEMA_MIGRATIONS,
-            Users.USERS);
+            Users.USERS
+        );
     }
 }
