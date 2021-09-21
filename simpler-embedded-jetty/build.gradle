@@ -12,7 +12,7 @@ plugins {
     id 'org.jetbrains.kotlin.jvm' // version '1.3.11'
 }
 
-apply plugin: 'com.novoda.bintray-release' // must be applied after your artifact generating plugin (eg. java / com.android.library)
+//apply plugin: 'com.novoda.bintray-release' // must be applied after your artifact generating plugin (eg. java / com.android.library)
 
 group 'at.wavywalk.simplerembeddedjetty'
 version '0.1.0'
@@ -26,36 +26,36 @@ repositories {
     }
 }
 
-task sourcesJar(type: Jar, dependsOn: project.classes) {
-    classifier = 'sources'
-    from sourceSets.main.allSource
-}
+//task sourcesJar(type: Jar, dependsOn: project.classes) {
+//    classifier = 'sources'
+//    from sourceSets.main.allSource
+//}
 //
 //task javadocJar(type: Jar, dependsOn: project.javadoc) {
 //    from javadoc.destinationDir
 //}
 //
-artifacts {
-    archives sourcesJar
-}
+//artifacts {
+//    archives sourcesJar
+//}
 
 dependencies {
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
-    testCompile group: 'junit', name: 'junit', version: '4.12'
-    compile group: 'org.eclipse.jetty', name: 'jetty-server', version: '9.4.14.v20181114'
-    compile group: 'org.eclipse.jetty', name: 'jetty-servlet', version: '9.4.14.v20181114'
-    compile project(":simpler")
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
+    implementation group: 'org.eclipse.jetty', name: 'jetty-server', version: '9.4.14.v20181114'
+    implementation group: 'org.eclipse.jetty', name: 'jetty-servlet', version: '9.4.14.v20181114'
+    implementation project(":simpler")
 }
 
-publish {
-    userOrg = 'wavywalk'
-    groupId = 'at.wavywalk.simpler'
-    repoName = 'maven'
-    artifactId = 'simpler-embedded-jetty'
-    publishVersion = '0.1.0'
-    desc = 'embedded jetty for simpler framework'
-    repository = "https://github.com/WavyWalk/simpler-embedded-jetty"
-}
+//publish {
+//    userOrg = 'wavywalk'
+//    groupId = 'at.wavywalk.simpler'
+//    repoName = 'maven'
+//    artifactId = 'simpler-embedded-jetty'
+//    publishVersion = '0.1.0'
+//    desc = 'embedded jetty for simpler framework'
+//    repository = "https://github.com/WavyWalk/simpler-embedded-jetty"
+//}
 
 compileKotlin {
     kotlinOptions.jvmTarget = "1.8"

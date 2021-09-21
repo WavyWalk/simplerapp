@@ -71,7 +71,7 @@ constructor(
         insertQuery.setReturning(${jooqTableInstance}.${primaryKey.tableFieldName})
         insertQuery.execute()
         val jooqReturnedRecord = insertQuery.returnedRecord
-        model.${primaryKey.property} = jooqReturnedRecord.${primaryKey.property}
+        model.${primaryKey.property} = jooqReturnedRecord?.${primaryKey.property}
     }
 
 }

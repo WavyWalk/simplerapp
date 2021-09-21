@@ -1,6 +1,5 @@
 buildscript {
     repositories {
-        jcenter()
         mavenCentral()
     }
     dependencies {
@@ -13,7 +12,7 @@ plugins {
     id 'org.jetbrains.kotlin.jvm'// version '1.3.61'
 }
 
-apply plugin: 'com.novoda.bintray-release'
+//apply plugin: 'com.novoda.bintray-release'
 
 group 'at.wavywalk.simpler.orm'
 version '0.1.01'
@@ -23,38 +22,38 @@ repositories {
     mavenCentral()
 }
 
-task sourcesJar(type: Jar, dependsOn: project.classes) {
-    classifier = 'sources'
-    from sourceSets.main.allSource
-}
+//task sourcesJar(type: Jar, dependsOn: project.classes) {
+//    classifier = 'sources'
+//    from sourceSets.main.allSource
+//}
 //
 //task javadocJar(type: Jar, dependsOn: project.javadoc) {
 //    from javadoc.destinationDir
 //}
 //
-artifacts {
-    archives sourcesJar
-}
+//artifacts {
+//    archives sourcesJar
+//}
 
 dependencies {
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
-    testCompile group: 'junit', name: 'junit', version: '4.12'
-    compile "org.jooq:jooq:3.13.1"
-    compile "org.jooq:jooq-codegen:3.13.1"
-    compile "org.jooq:jooq-meta:3.13.1"
-    compile group: 'commons-fileupload', name: 'commons-fileupload', version: '1.4'
-    compile group: 'org.freemarker', name: 'freemarker', version: '2.3.29'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
+    implementation "org.jooq:jooq:3.15.3"
+    implementation "org.jooq:jooq-codegen:3.15.3"
+    implementation "org.jooq:jooq-meta:3.15.3"
+    implementation group: 'commons-fileupload', name: 'commons-fileupload', version: '1.4'
+    implementation group: 'org.freemarker', name: 'freemarker', version: '2.3.29'
 }
 
-publish {
-    userOrg = 'wavywalk'
-    groupId = 'at.wavywalk.simpler'
-    repoName = 'maven'
-    artifactId = 'simpler-orm'
-    publishVersion = '0.1.01'
-    desc = 'an orm'
-    repository = "https://github.com/WavyWalk/simpler-orm"
-}
+//publish {
+//    userOrg = 'wavywalk'
+//    groupId = 'at.wavywalk.simpler'
+//    repoName = 'maven'
+//    artifactId = 'simpler-orm'
+//    publishVersion = '0.1.01'
+//    desc = 'an orm'
+//    repository = "https://github.com/WavyWalk/simpler-orm"
+//}
 
 
 

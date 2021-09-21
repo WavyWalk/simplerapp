@@ -23,7 +23,7 @@ class InTransactionJooqDslProvider(val configuration: Configuration) {
     fun closeInvokedDSLs() {
         for (dsl in invokedDSLs) {
             val connection = dsl.configuration().connectionProvider().acquire()
-            if (!connection.isClosed) {
+            if (!connection!!.isClosed) {
                 connection.rollback()
                 connection.close()
             }

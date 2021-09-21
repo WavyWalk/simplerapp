@@ -13,7 +13,7 @@ plugins {
     id 'org.jetbrains.kotlin.jvm'
 }
 
-apply plugin: 'com.novoda.bintray-release' // must be applied after your artifact generating plugin (eg. java / com.android.library)
+//apply plugin: 'com.novoda.bintray-release' // must be applied after your artifact generating plugin (eg. java / com.android.library)
 
 group 'wavywalk.simpler.configurator'
 version '0.1.0'
@@ -24,36 +24,36 @@ repositories {
     mavenCentral()
 }
 
-task sourcesJar(type: Jar, dependsOn: project.classes) {
-    classifier = 'sources'
-    from sourceSets.main.allSource
-}
+//task sourcesJar(type: Jar, dependsOn: project.classes) {
+//    classifier = 'sources'
+//    from sourceSets.main.allSource
+//}
 //
 //task javadocJar(type: Jar, dependsOn: project.javadoc) {
 //    from javadoc.destinationDir
 //}
 //
-artifacts {
-    archives sourcesJar
-}
+//artifacts {
+//    archives sourcesJar
+//}
 
 
 dependencies {
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
-    compile "org.jetbrains.kotlin:kotlin-reflect"
-    testCompile group: 'junit', name: 'junit', version: '4.12'
-    compile(group: 'org.yaml', name: 'snakeyaml', version: '1.18')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    implementation "org.jetbrains.kotlin:kotlin-reflect"
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
+    implementation(group: 'org.yaml', name: 'snakeyaml', version: '1.18')
 }
 
-publish {
-    userOrg = 'wavywalk'
-    groupId = 'at.wavywalk.simpler'
-    repoName = 'maven'
-    artifactId = 'simpler-configurator'
-    publishVersion = '0.1.0'
-    desc = 'a configuration lib'
-    repository = "https://github.com/WavyWalk/simpler-configurator"
-}
+//publish {
+//    userOrg = 'wavywalk'
+//    groupId = 'at.wavywalk.simpler'
+//    repoName = 'maven'
+//    artifactId = 'simpler-configurator'
+//    publishVersion = '0.1.0'
+//    desc = 'a configuration lib'
+//    repository = "https://github.com/WavyWalk/simpler-configurator"
+//}
 
 
 compileKotlin {
